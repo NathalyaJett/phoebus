@@ -8,6 +8,9 @@
     - name: Update apt cache
       apt: update_cache=yes cache_valid_time=3600
 
+    - name: Upgrade all apt packages
+      apt: upgrade=dist
+
     - name: Install dependencies
       apt:
         name: "{{ packages }}"
@@ -55,3 +58,8 @@
     - name: Move docker-compose to /usr/local/bin/docker-compose
       command: mv ~/docker-compose /usr/local/bin/docker-compose
       when: docker_compose.stat.exists
+    
+    - name: Run app
+      ansible.builtin.shell:
+       cmd: docker-compose up
+       chdir: /home/ubuntu/phoebus
