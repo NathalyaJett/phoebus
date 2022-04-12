@@ -1,0 +1,8 @@
+version: "3.5"
+services:
+  spring-boot:
+    image: spring-boot
+    build:
+      context: .
+    ports:
+      - "8080:8080"
